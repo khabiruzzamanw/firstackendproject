@@ -16,9 +16,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/logup", logupRouter);
 app.use("/login", loginRouter);
+// good to go on local system
+// const frontendPath =
+//   "/home/work/Documents/Backend/testServer/expressServerShayranStyled/frontend";
 
-const frontendPath =
-  "/home/work/Documents/Backend/testServer/expressServerShayranStyled/frontend";
+const frontendPath = path.join(__dirname, "frontend");
 
 app.use(express.static(path.join(frontendPath, "assets")));
 

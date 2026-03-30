@@ -4,8 +4,11 @@ const router = express.Router();
 const jsonwebtoken = require("jsonwebtoken");
 const user = require("../models/user.model.js");
 
-const frontendPath =
-  "/home/work/Documents/Backend/testServer/expressServerShayranStyled/frontend";
+// good to go on local system
+// const frontendPath =
+//   "/home/work/Documents/Backend/testServer/expressServerShayranStyled/frontend";
+
+const frontendPath = path.join(__dirname, "../frontend");
 
 router.post("/", async (req, res) => {
   console.log(req.body);
