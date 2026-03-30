@@ -1,0 +1,32 @@
+const express = require("express");
+const path = require("path");
+const router = express.Router();
+const user = require("../models/user.model.js");
+
+const frontendPath =
+  "/home/work/Documents/Backend/testServer/expressServerShayranStyled/frontend";
+
+router.post("/", async (req, res) => {
+  try {
+    console.log(req.body);
+    const { email, username, password } = req.body;
+
+    const newUSer = new user({
+      email,
+      username,
+      password,
+    });
+    await newUSer.save();
+    return res
+      .status(201)
+      .send("User registered successfully and saved to Atlas!");
+  } catch (error) {
+    return res.status(500).send("Error saving user: " + error.message);
+  }
+});
+
+router.get("/", (req, res) => {
+  res.sendFile(path.join(frontendPath, "logup.html"));
+});
+
+module.exports = router;

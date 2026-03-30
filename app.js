@@ -1,22 +1,40 @@
 const mongoose = require("mongoose");
+const path = require("path");
 const express = require("express");
 const jsonwebtoken = require("jsonwebtoken");
 const dotenv = require("dotenv");
-// const { log, timeLog } = require("console");
-
+const connectedToDB = require("./config/db.js");
+const authentify = require("./midlleware/userAuth.middleware.js");
+const cookieParser = require("cookie-parser");
+const loginRouter = require("./routes/login.route.js");
+const logupRouter = require("./routes/logup.route.js");
 dotenv.config();
-
 const app = express();
 
-app.use(express.static("frontend"));
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/logup", logupRouter);
+app.use("/login", loginRouter);
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
-app.get("/file", (req, res) => {
-  res.sendFile("index.html");
+const frontendPath =
+  "/home/work/Documents/Backend/testServer/expressServerShayranStyled/frontend";
+
+app.use(express.static(path.join(frontendPath, "assets")));
+
+app.get("/", authentify, (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`server is running at port : ${process.env.PORT}`);
-});
+async function startServer() {
+  try {
+    await connectedToDB();
+    app.listen(process.env.PORT, () => {
+      console.log(`server is running at port : ${process.env.PORT}`);
+    });
+  } catch (error) {
+    console.log("server could start", error);
+  }
+}
+
+startServer();

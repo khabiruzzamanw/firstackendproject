@@ -1,0 +1,82 @@
+:root {
+  --header-height: 65px;
+
+  --bg: #080808;
+  --blured: rgba(0, 0, 0, 0.65);
+  --accent: #a93226;
+  --surface: #111111;
+  --surface-muted: #0d0d0d;
+  --text: #f0f0f0;
+  --text-muted: #555555;
+  --border: rgba(255, 255, 255, 0.07);
+  --button: #080808;
+  --closeButton: #a93226;
+  --saveButton: #1a1a1a;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --deleteToast: #a93226;
+  --addToast: #555555;
+  --note-accent: #c9843a;
+  --journal-accent: #6b8f6b;
+  --todo-accent: #4a7fa5;
+  --surface-hovered: #1a1a1a;
+  --border-hovered: rgba(255, 255, 255, 0.13);
+  --button-hovered: #111111;
+}
+
+.light {
+  --header-height: 65px;
+
+  --bg: #f7f7f5;
+  --blured: rgba(0, 0, 0, 0.45);
+  --accent: #2563eb;
+  --surface: #ffffff;
+  --surface-muted: #f0f0ee;
+  --text: #111111;
+  --text-muted: #aaaaaa;
+  --border: rgba(0, 0, 0, 0.08);
+  --button: #f7f7f5;
+  --closeButton: #1a56db;
+  --saveButton: #f0f0ee;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  --deleteToast: #1a56db;
+  --addToast: #aaaaaa;
+  --note-accent: #b8651a;
+  --journal-accent: #4a7a4a;
+  --todo-accent: #2563eb;
+  --surface-hovered: #ebebea;
+  --border-hovered: rgba(0, 0, 0, 0.15);
+  --button-hovered: #ebebea;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: sans-serif;
+  transition:
+    background 0.2s ease-in,
+    color 0.2s ease-in;
+}
+
+main {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  color: var(--text);
+}
