@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const path = require("path");
 const router = express.Router();
 const jsonwebtoken = require("jsonwebtoken");
@@ -11,17 +12,21 @@ const user = require("../models/user.model.js");
 const frontendPath = path.join(__dirname, "../frontend");
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
+  // log this if you need
+  // console.log(req.body);
   try {
     const { email, password } = req.body;
 
     const foundUser = await user.findOne({ email });
 
     if (!foundUser) {
-      return res.send("email or password is incorrect");
+      return res.redirect("/login?logerror=email or password is incorrect");
     }
-    if (foundUser.password !== password) {
-      return res.send("email or password is incorrect");
+
+    const corretPassword = await bcrypt.compare(password, foundUser.password);
+
+    if (!corretPassword) {
+      return res.redirect("/login?logerror=email or password is incorrect");
     }
 
     const token = jsonwebtoken.sign(

@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const path = require("path");
 const express = require("express");
-const jsonwebtoken = require("jsonwebtoken");
+// const jsonwebtoken = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const connectedToDB = require("./config/db.js");
 const authentify = require("./midlleware/userAuth.middleware.js");
@@ -16,6 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/logup", logupRouter);
 app.use("/login", loginRouter);
+
 // good to go on local system
 // const frontendPath =
 //   "/home/work/Documents/Backend/testServer/expressServerShayranStyled/frontend";

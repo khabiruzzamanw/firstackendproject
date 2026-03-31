@@ -49,6 +49,22 @@
         </div>
       </div>
     </main>
-    <script></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const logerror = params.get("logerror");
+      if (logerror) {
+        toastFunction(logerror, "toastPopUp");
+      }
+
+      function toastFunction(message, name) {
+        const toast = document.createElement("div");
+        toast.textContent = message;
+        toast.setAttribute("class", name);
+        document.body.append(toast);
+        setTimeout(() => toast.remove(), 5000);
+      }
+
+      window.history.replaceState({}, document.title, "/login");
+    </script>
   </body>
 </html>

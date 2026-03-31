@@ -58,6 +58,14 @@
         </div>
       </div>
     </main>
-    <script></script>
+    <script>
+      function toastFunction(message, name) {
+        const toast = document.createElement("div");
+        toast.textContent = message;
+        toast.setAttribute("class", name);
+        document.body.append(toast);
+        setTimeout(() => toast.remove(), 5000);
+      }
+    </script>
   </body>
 </html>
